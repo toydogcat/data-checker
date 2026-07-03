@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality Checker | 資料集有效性與品質驗證平台</title>
+    <meta name="description" content="線上資料品質檢測工具：自動化分析數據缺失率、重複率、格式一致性、PII敏感個資及內容資訊密度（Entropy / TTR）。">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Chart.js & PapaParse CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand-badge">
+                <span>⚡</span> Data Checker Phase 1 Web Auditor
+            </div>
+            <h1 class="app-title">資料集有效性與品質驗證平台</h1>
+            <p class="app-subtitle">
+                在瀏覽器端即可對多個資料庫/語料庫進行體檢：即時分析缺失率、重複率、PII 個資與內容資訊豐富度。
+            </p>
+        </header>
+
+        <!-- Upload & Input Dropzone -->
+        <section class="upload-card">
+            <div class="dropzone" id="dropzone">
+                <div class="dropzone-icon">📁</div>
+                <div class="dropzone-text">拖曳或點擊選擇資料檔 (CSV, JSON, JSONL, TXT)</div>
+                <div class="dropzone-hint">完全在本地端瀏覽器完成解析，資料絕不上傳外洩</div>
+                <input type="file" id="fileInput" class="file-input" accept=".csv,.json,.jsonl,.txt">
+            </div>
+
+            <div class="actions-bar">
+                <div class="demo-buttons">
+                    <button class="btn btn-secondary" id="btnSampleCSV">
+                        📊 載入測試 DataFrame (CSV)
+                    </button>
+                    <button class="btn btn-secondary" id="btnSampleJSONL">
+                        📝 載入測試語料庫 (JSONL)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Dashboard Section -->
+        <section id="reportSection" style="display: none;">
+            <!-- Overview Grid: Score Card + Key Metrics -->
+            <div class="overview-grid">
+                <!-- Score Card -->
+                <div class="score-card">
+                    <div class="score-ring" id="scoreRing">
+                        <div class="score-value" id="scoreValue">100</div>
+                    </div>
+                    <div class="score-label">資料品質綜合得分</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">
+                            <span>資料總筆數</span>
+                            <span>🔢</span>
+                        </div>
+                        <div class="stat-value" id="statTotalRows">0</div>
+                        <div class="stat-sub">Records evaluated</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">
+                            <span>整體缺失率 (Missing Rate)</span>
+                            <span>⚠️</span>
+                        </div>
+                        <div class="stat-value" id="statMissingRate">0%</div>
+                        <div class="stat-sub">Sparsity threshold &lt; 15%</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">
+                            <span>資料重複率 (Duplication)</span>
+                            <span>🔄</span>
+                        </div>
+                        <div class="stat-value" id="statDupRate">0%</div>
+                        <div class="stat-sub">Redundancy threshold &lt; 5%</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">
+                            <span>PII 敏感個資筆數</span>
+                            <span>🛡️</span>
+                        </div>
+                        <div class="stat-value" id="statPIICount">0</div>
+                        <div class="stat-sub">TW ID / Phone / Email</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Visualizations & Checklist -->
+            <div class="details-section">
+                <div class="nav-tabs">
+                    <button class="tab-btn active">📊 統計圖表 & 資訊密度</button>
+                </div>
+
+                <!-- Visual Charts Grid -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-title">欄位缺失率分布 (Column Sparsity)</div>
+                        <canvas id="missingChart" height="200"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-title">安全合規與品質問題統計 (Safety & Compliance)</div>
+                        <canvas id="safetyChart" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Quality Checklist Summary Table -->
+                <h3 class="chart-title" style="margin-top: 24px;">📋 評估檢查表 (Quality Checklist Summary)</h3>
+                <div class="table-container">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>評估項目</th>
+                                <th>檢查指標</th>
+                                <th>數據表現</th>
+                                <th>品質評定</th>
+                            </tr>
+                        </thead>
+                        <tbody id="checklistTableBody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Export Action Bar -->
+                <div style="margin-top: 24px; text-align: right;">
+                    <button class="btn btn-outline" id="btnExportReport">
+                        📥 下載評估報告 JSON
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Data Quality Checker Toolkit &copy; 2026. Built with HTML5, Vanilla CSS &amp; JavaScript.</p>
+        </footer>
+    </div>
+
+    <!-- App Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>

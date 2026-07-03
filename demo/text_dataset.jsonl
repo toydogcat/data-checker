@@ -1,0 +1,20 @@
+{"id": 1, "text": "人工智慧（AI）近年的快速發展，深刻地改變了全球科技產業與人類生活型態。從大型語言模型到自動駕駛技術，AI 在各個領域展現出前所未有的突破。", "category": "technology"}
+{"id": 2, "text": "資料品質是機器學習與數據分析的核心基石。低品質的資料包含空值、重複值與亂碼，可能導致模型過擬合或產生錯誤結論。", "category": "data_science"}
+{"id": 3, "text": "對啊", "category": "chit_chat"}
+{"id": 4, "text": "謝謝", "category": "chit_chat"}
+{"id": 5, "text": "嗯嗯好的收到", "category": "chit_chat"}
+{"id": 6, "text": "請注意：此系統包含敏感個資，聯絡人身分證字號為 A123456789，電話為 0912345678，請務必進行去識別化處理。", "category": "privacy"}
+{"id": 7, "text": "這間餐廳的服務態度真的靠北爛，餐點又貴又難吃，簡直三小！fuck", "category": "review"}
+{"id": 8, "text": "台灣運輸資料易存網（TDX）提供涵蓋公車、軌道、航空、航運、自行車及停車等跨運具之綜合交通數據 API，方便開發者進行智慧交通應用整合。", "category": "transportation"}
+{"id": 9, "text": "人工智慧（AI）近年的快速發展，深刻地改變了全球科技產業與人類生活型態。從大型語言模型到自動駕駛技術，AI 在各個領域展現出前所未有的突破。", "category": "technology"}
+{"id": 10, "text": "自然語言處理（NLP）技術包含文本分類、情感分析、命名實體識別（NER）、機器翻譯以及問答系統等多元任務。", "category": "nlp"}
+{"id": 11, "text": "亂碼破字測試：\ufffd ï¿½ 測試無效字元與非列印字元。", "category": "dirty"}
+{"id": 12, "text": "量子計算利用量子疊加與量子糾纏的物理特性，可以在特定複雜問題上展現遠超傳統超級電腦的計算能力。", "category": "physics"}
+{"id": 13, "text": "哈囉你好", "category": "chit_chat"}
+{"id": 14, "text": "用戶電子郵件地址為 contact@service.example.org，信用卡號為 4532-1111-2222-3333，請確認合規。", "category": "privacy"}
+{"id": 15, "text": "氣候變遷引發全球暖化與極端天氣事件頻傳，各國正加速轉型綠能與淨零碳排政策以減少碳足跡。", "category": "environment"}
+{"id": 16, "text": "操你媽的這爛系統到底誰寫的？白痴工程師！", "category": "toxic"}
+{"id": 17, "text": "機器學習模型可以分為監督式學習、無監督式學習與強化學習三大主要類別。", "category": "data_science"}
+{"id": 18, "text": "謝謝", "category": "chit_chat"}
+{"id": 19, "text": "深度學習中的卷積神經網路（CNN）常用於影像識別與電腦視覺任務，而循環神經網路（RNN）與 Transformer 則常用於序列資料處理。", "category": "deep_learning"}
+{"id": 20, "text": "區塊鏈技術透過去中心化的分散式帳本與密碼學加密，保障了資料的不可篡改性與透明度。", "category": "blockchain"}
