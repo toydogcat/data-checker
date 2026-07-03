@@ -1,6 +1,6 @@
 # Data Quality Checker (資料集有效性與品質驗證平台) 📊
 
-[![GitHub Pages Deployment](https://github.com/toby/data-checker/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/toby/data-checker)
+[Demo](https://toydogcat.github.io/data-checker/)
 
 `data-checker` 是一個專為機器學習、NLP 與大型語言模型（LLM）資料集設計的**自動化數據品質體檢工具庫**。提供網頁端（GitHub Pages）與 Python 工具庫（Colab / 本地端），協助開發者快速評估資料集的健康度、資訊密度、向量多樣性與 LLM 品質評分。
 
