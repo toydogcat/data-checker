@@ -20,7 +20,7 @@
 
 ## 🌐 a 類：GitHub Pages 網頁端工具 (Phase 1 Web Checker)
 
-可以直接在瀏覽器端載入 CSV、JSON、JSONL 或 TXT 資料，所有運算皆在客戶端完成（不傳送資料至後端）：
+可以直接在瀏覽器端載入 CSV、JSON、JSONL、XML 或 TXT 資料，所有運算皆在客戶端完成（不傳送資料至後端）：
 
 - 支援拖曳或上傳檔案。
 - 提供一鍵載入內建測試資料集。

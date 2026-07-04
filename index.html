@@ -35,9 +35,9 @@
         <section class="upload-card">
             <div class="dropzone" id="dropzone">
                 <div class="dropzone-icon">📁</div>
-                <div class="dropzone-text">拖曳或點擊選擇資料檔 (CSV, JSON, JSONL, TXT)</div>
+                <div class="dropzone-text">拖曳或點擊選擇資料檔 (CSV, JSON, JSONL, TXT, XML)</div>
                 <div class="dropzone-hint">完全在本地端瀏覽器完成解析，資料絕不上傳外洩</div>
-                <input type="file" id="fileInput" class="file-input" accept=".csv,.json,.jsonl,.txt">
+                <input type="file" id="fileInput" class="file-input" accept=".csv,.json,.jsonl,.txt,.xml">
             </div>
 
             <div class="actions-bar">
@@ -47,6 +47,9 @@
                     </button>
                     <button class="btn btn-secondary" id="btnSampleJSONL">
                         📝 載入測試語料庫 (JSONL)
+                    </button>
+                    <button class="btn btn-secondary" id="btnSampleXML">
+                        📜 載入測試 XML 數據
                     </button>
                 </div>
             </div>
